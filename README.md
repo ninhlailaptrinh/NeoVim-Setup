@@ -97,3 +97,31 @@ source ~/.zshrc
 # Cài đặt MSVC BUILD TOOLS
 
 ---
+# Cài AutoHotKey và cấu hình mở Wezterm
+1. Copy hết .
+# Đường dẫn đến file
+$filePath = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\wezterm_hotkey.ahk"
+
+# Kiểm tra file có tồn tại không
+if (Test-Path $filePath) {
+    Write-Host "File đã tồn tại. Nội dung hiện tại:"
+    Get-Content $filePath
+} else {
+    Write-Host "File chưa tồn tại. Đang tạo file mới..."
+    @'
+#Requires AutoHotkey v2.0
+
+^q::
+{
+    Run "C:\Users\ninhlailaptrinh\scoop\apps\wezterm\current\wezterm-gui.exe"
+}
+'@ | Out-File -FilePath $filePath -Encoding UTF8
+    
+    Write-Host "Đã tạo file thành công. Nội dung file mới:"
+    Get-Content $filePath
+}
+
+# Hiển thị thông tin file
+Get-Item $filePath | Select-Object Mode, LastWriteTime, Length, Name
+
+2. Dán vô pwsh run script . 
