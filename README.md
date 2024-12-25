@@ -30,10 +30,17 @@ deactivate
 
 # Cài đặt và cấu hình Tmux 
 1. git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# Trong tmux, nhấn:
-# Ctrl+a (prefix key của bạn)
-# Sau đó nhấn I (shift + i)
+2. Trong tmux, nhấn:
+3. Ctrl+a (prefix key của bạn)
+4. Sau đó nhấn I (shift + i)
 
+# Nếu lỗi cài thủ công 
+1. git clone https://github.com/christoomey/vim-tmux-navigator ~/.tmux/plugins/vim-tmux-navigator
+2. git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux/plugins/tmux-resurrect 
+3. git clone https://github.com/tmux-plugins/tmux-continuum ~/.tmux/plugins/tmux-continuum
+4. git clone https://github.com/fabioluciano/tmux-tokyo-night ~/.tmux/plugins/tmux-tokyo-night
+5. Trong Tmux nhấn Ctrl+a r hoặc tmux source ~/.tmux.conf
+6. Lệnh kiểm tra plugin đã được tải chưa : ls ~/.tmux/plugins/
 --------------------------------------------------------------------------
 
 # Cài đặt và cấu hình OH MY ZSH
