@@ -6,7 +6,7 @@
 2. Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 3. scoop install git
 4. scoop bucket add extras nerd-fonts
-5. scoop install extras/wezterm nerd-fonts/JetBrainsMono-NF nodejs python  
+5. scoop install extras/wezterm nerd-fonts/JetBrainsMono-NF nodejs python autohotkey 
 
 # Cài đặt các gói cần thiết
 
