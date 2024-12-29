@@ -11,6 +11,8 @@ local act = wezterm.action
 --}
 config.default_prog = { 'wsl.exe', '-d', 'Arch' }
 
+
+
 -- my coolnight colorscheme
 config.colors = {
   foreground = "#CBE0F0",
@@ -24,10 +26,14 @@ config.colors = {
   brights = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#A277FF", "#a277ff", "#24EAF7", "#24EAF7" },
 }
 
+max_fps = 120
+
+animation_fps = 120
+
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 20
 
-config.enable_tab_bar = true 
+config.enable_tab_bar = false 
 
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.85
@@ -60,48 +66,6 @@ config.keys = {
     mods = 'CTRL',
     action = act.ActivateTabRelative(1),
   },
-  {
-    key = 'Tab',
-    mods = 'CTRL|SHIFT',
-    action = act.ActivateTabRelative(-1),
-  },
-
-  -- Chia màn hình ngang
-  {
-    key = '-',
-    mods = 'ALT',
-    action = act.SplitVertical { domain = 'CurrentPaneDomain' },
-  },
-
-  -- Chia màn hình dọc
-  {
-    key = '\\',
-    mods = 'ALT',
-    action = act.SplitHorizontal { domain = 'CurrentPaneDomain' },
-  },
-
-  -- Di chuyển giữa các panel
-  {
-    key = 'h',
-    mods = 'ALT',
-    action = act.ActivatePaneDirection 'Left',
-  },
-  {
-    key = 'l',
-    mods = 'ALT',
-    action = act.ActivatePaneDirection 'Right',
-  },
-  {
-    key = 'k',
-    mods = 'ALT',
-    action = act.ActivatePaneDirection 'Up',
-  },
-  {
-    key = 'j',
-    mods = 'ALT',
-    action = act.ActivatePaneDirection 'Down',
-  },
-
   -- Điều chỉnh kích thước font
   {
     key = '=',
@@ -122,5 +86,18 @@ config.window_padding = {
   bottom = 0,
 }
 
+wezterm.on("gui-startup", function(cmd)
+  local screen            = wezterm.gui.screens().active
+  local ratio             = 0.7
+  local width, height     = screen.width * ratio, screen.height * ratio
+  local tab, pane, window = wezterm.mux.spawn_window {
+    position = {
+      x = (screen.width - width) / 2,
+      y = (screen.height - height) / 2,
+      origin = 'ActiveScreen' }
+  }
+  -- window:gui_window():maximize()
+  window:gui_window():set_inner_size(width, height)
+end)
 -- and finally, return the configuration to wezterm
 return config
